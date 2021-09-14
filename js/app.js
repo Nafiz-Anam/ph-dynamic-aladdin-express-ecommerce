@@ -129,6 +129,7 @@ const viewDetails = (id) => {
         .then((data) => loadData(data));
 };
 
+// modal data load here
 const loadData = (data) => {
     const image = data.image;
     let dynamicRatingClass = "wow" + "-" + data.id;
@@ -164,13 +165,13 @@ const loadData = (data) => {
                 </div>
             </div>
         </div>`;
-        // modal div add 
+    // modal div add
     document.getElementById("modal-body").appendChild(div);
     // update star
     updateStarModal(data.id, data.rating.rate);
 };
 
-// modal star update 
+// modal star update
 function updateStarModal(id, rating) {
     const starPercentage = (rating / starsTotal) * 100;
     // Set width of stars-inner to percentage
@@ -181,7 +182,7 @@ function updateStarModal(id, rating) {
         starPercentageRounded;
 }
 
-// remove previous modal 
+// remove previous modal
 const removePrev = () => {
     // Get the element you want to remove
     let element = document.getElementById("product-detail");
