@@ -44,6 +44,7 @@ const showProducts = (products) => {
     }
 };
 
+// total star count is 5
 const starsTotal = 5;
 function updateStar(id, rating) {
     const starPercentage = (rating / starsTotal) * 100;

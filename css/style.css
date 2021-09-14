@@ -53,6 +53,19 @@ form button {
     margin-top: 15px;
 }
 
+/* all products area  */
+
+#all-products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    padding: 5% 3%;
+}
+
 /* single product card style  */
 
 .buy-now,
@@ -65,34 +78,28 @@ form button {
     color: white !important;
 }
 
-#all-products {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    text-align: center;
-    width: 100%;
-    margin: auto;
-    align-items: center;
-    justify-content: center;
-    padding: 5% 3%;
-}
 .single-product {
     transition: 0.6s;
     margin: 15px;
     border-radius: 10px;
     box-shadow: 0px 0px 7px rgb(236, 236, 236);
 }
+
 .single-product h1 {
     font-size: 20px;
 }
+
 .product-body {
     background-color: #f7f7f7;
     padding: 25px;
     border-radius: 0 0 10px 10px;
     height: 330px;
 }
+
 .single-product:hover {
     box-shadow: 0px 0px 17px #e57215;
 }
+
 .product-image {
     width: 250px;
     height: 250px;
@@ -111,6 +118,7 @@ form button {
     top: 20%;
     background-color: white;
 }
+
 .cart-main {
     padding-right: 30px;
 }
@@ -121,6 +129,7 @@ form button {
     background-color: #353535;
     padding: 3% 0;
 }
+
 .newsletter {
     display: flex;
     align-items: center;
@@ -205,6 +214,8 @@ footer a {
 
 /* end of footer area */
 
+/* few media queries */
+
 @media only screen and (max-width: 768px) {
     #all-products {
         display: grid;
@@ -223,6 +234,7 @@ footer a {
         padding-right: 10px;
     }
 }
+
 @media only screen and (max-width: 468px) {
     #all-products {
         display: grid;
