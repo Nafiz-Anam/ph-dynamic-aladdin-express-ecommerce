@@ -32,8 +32,15 @@ const showProducts = (products) => {
                     ( <b>${product.rating.count}</b>  Reviews )</p>
                 <button onclick="addToCart(${product.id},${
             product.price
-        })" id="addToCart-btn" class="buy-now btn">add to cart</button>
-                <button id="details-btn" class="btn btn-info">Details</button>
+        })" id="addToCart-btn" class="buy-now btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                <button
+                    data-backdrop="static"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    onclick="viewDetails(${product.id})"
+                    id="details-btn"
+                    class="btn btn-info"
+                ><i class="fas fa-eye"></i> Quick View</button>
             </div>
         </div>
         `;
@@ -120,4 +127,64 @@ const viewDetails = (id) => {
     fetch(url)
         .then((response) => response.json())
         .then((data) => loadData(data));
+};
+
+const loadData = (data) => {
+    const image = data.image;
+    let dynamicRatingClass = "wow" + "-" + data.id;
+    const div = document.createElement("div");
+    div.innerHTML = `<div class="container-fluid pb-5" id="product-detail">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="pro-img">
+                        <img class="product-image" src=${image}></img>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="details">
+                        <h4>${data.title}</h4>
+                        <p>Category: ${data.category}</p>
+                        <div class="stars-outer" id="${data.id}">
+                    <div class="stars-inner ${dynamicRatingClass}"></div>
+                </div><br>
+                        <p><b>${data.rating.rate}</b>
+                    ( <b>${data.rating.count}</b>  Reviews )</p>
+                        <hr />
+                        <h4>Price: $ ${data.price}</h4><br>
+                        <div class="col-lg-5 center-item">
+                        <div class="input-group number-spinner">
+                            <button id="phone-minus" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                            <input type="number" min="0" class="form-control text-center" value="1">
+                            <button id="phone-plus" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                        </div>
+                        </div><br>
+                        <button onclick="addToCart(${data.id},${data.price})" id="addToCart-btn" class="buy-now btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+                        <button class="btn btn-danger"><i class="fas fa-heart"></i> Add to Wishlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+        // modal div add 
+    document.getElementById("modal-body").appendChild(div);
+    // update star
+    updateStarModal(data.id, data.rating.rate);
+};
+
+// modal star update 
+function updateStarModal(id, rating) {
+    const starPercentage = (rating / starsTotal) * 100;
+    // Set width of stars-inner to percentage
+    const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+    // create dynamicClass for each products
+    let dynamicClass = ".wow" + "-" + id;
+    document.querySelector(`${dynamicClass}`).style.width =
+        starPercentageRounded;
+}
+
+// remove previous modal 
+const removePrev = () => {
+    // Get the element you want to remove
+    let element = document.getElementById("product-detail");
+    // Get the parent and remove the element since it is a child of the parent
+    element.parentNode.removeChild(element);
 };
