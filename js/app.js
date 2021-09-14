@@ -32,14 +32,14 @@ const showProducts = (products) => {
                     ( <b>${product.rating.count}</b>  Reviews )</p>
                 <button onclick="addToCart(${product.id},${
             product.price
-        })" id="addToCart-btn" class="buy-now btn"><i class="fas fa-cart-plus"></i> Add to Cart</button>
+        })" id="addToCart-btn" class="buy-now btn m-2"><i class="fas fa-cart-plus"></i> Add to Cart</button>
                 <button
                     data-backdrop="static"
                     data-bs-toggle="modal"
                     data-bs-target="#exampleModal"
                     onclick="viewDetails(${product.id})"
                     id="details-btn"
-                    class="btn btn-info"
+                    class="btn btn-info m-2"
                 ><i class="fas fa-eye"></i> Quick View</button>
             </div>
         </div>
