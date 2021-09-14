@@ -1,3 +1,4 @@
+// fetching products from api
 const loadProducts = () => {
     const url = `https://fakestoreapi.com/products`;
     fetch(url)
@@ -11,6 +12,9 @@ const showProducts = (products) => {
     const allProducts = products.map((pd) => pd);
     for (const product of allProducts) {
         const image = product.image;
+        // making a dynamic class to count stars
+        let dynamicRating = "wow" + product.id;
+        // dynamic div for each products
         const div = document.createElement("div");
         div.classList.add("product");
         div.innerHTML = `
@@ -19,20 +23,39 @@ const showProducts = (products) => {
                 <img class="product-image" src=${image}></img>
             </div>
             <div class="product-body">
-                <h1>${product.title}</h1>
+                <h1>${product.title.slice(0, 50)}</h1>
                 <p>Category: ${product.category}</p>
                 <h3>Price: $ ${product.price}</h3>
-                <p>Total Reviews: <b>${product.rating.count}</b></p>
-                <p>Rating: <b>${product.rating.rate}</b></p>
-                <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-                <button id="details-btn" class="btn btn-danger">Details</button>
+                <div class="stars-outer" id="${product.id}">
+                    <div class="stars-inner ${dynamicRating}"></div>
+                </div><br><p><b>${product.rating.rate}</b>
+                    ( <b>${product.rating.count}</b>  Reviews )</p>
+                <button onclick="addToCart(${product.id},${
+            product.price
+        })" id="addToCart-btn" class="buy-now btn">add to cart</button>
+                <button id="details-btn" class="btn btn-info">Details</button>
             </div>
         </div>
         `;
+        // adding all the products one by one
         document.getElementById("all-products").appendChild(div);
+        // calling the star rating function
+        updateStar(product.id, product.rating.rate);
     }
 };
 
+const starsTotal = 5;
+function updateStar(id, rating) {
+    const starPercentage = (rating / starsTotal) * 100;
+    // Set width of stars-inner to percentage
+    const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+    // create dynamicClass for each products
+    let dynamicClass = ".wow" + id;
+    document.querySelector(`${dynamicClass}`).style.width =
+        starPercentageRounded;
+}
+
+// addToCart function
 let count = 0;
 const addToCart = (id, price) => {
     count = count + 1;
@@ -42,6 +65,7 @@ const addToCart = (id, price) => {
     updateTotal();
 };
 
+// getting values from cart table using id
 const getInputValue = (id) => {
     const element = document.getElementById(id).innerText;
     const converted = parseFloat(element);
@@ -86,4 +110,13 @@ const updateTotal = () => {
         getInputValue("total-tax");
     document.getElementById("total").innerText =
         parseFloat(grandTotal).toFixed(2);
+};
+
+// view single product details
+
+const viewDetails = (id) => {
+    let url = `https://fakestoreapi.com/products/${id}`;
+    fetch(url)
+        .then((response) => response.json())
+        .then((data) => loadData(data));
 };

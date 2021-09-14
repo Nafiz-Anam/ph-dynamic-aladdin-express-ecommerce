@@ -1,7 +1,34 @@
+/* style start  */
 body {
     overflow-x: hidden;
     font-family: "Montserrat", sans-serif;
 }
+
+/* nav style  */
+
+.navbar-brand img {
+    width: 20%;
+}
+
+nav {
+    border-bottom: 1px solid #e57215;
+}
+
+nav ul li a {
+    font-size: 18px;
+    font-weight: 500;
+    padding-left: 30px !important;
+}
+
+nav .active {
+    color: #e57215 !important;
+}
+
+nav ul li a:hover {
+    color: #e57215 !important;
+}
+
+/* search section style  */
 
 .search {
     background-color: #ffffff;
@@ -12,6 +39,8 @@ body {
 form button {
     border: none !important;
     border-radius: 0 25px 25px 0 !important;
+    background-color: #e57215 !important;
+    color: white !important;
 }
 
 .fas {
@@ -21,36 +50,24 @@ form button {
 .search-box {
     width: 281px;
     margin: auto;
-    margin-top: 50px;
+    margin-top: 15px;
 }
 
-/* .search-field {
-    border: none;
-    border-radius: 50px;
-    padding: 5px;
-    outline: none;
+/* single product card style  */
+
+.buy-now,
+.parces button {
+    background-color: #e57215 !important;
+    color: white !important;
 }
-.search-field:hover {
-    outline: none;
-    border: none;
+
+#details-btn {
+    color: white !important;
 }
-.search-box {
-    border: 1px solid rgb(3, 118, 211);
-    width: 281px;
-    border-radius: 5px;
-    margin: auto;
-    margin-top: 50px;
-    border-right: none;
-}
-.search-button {
-    padding: 10px 50px;
-    border-radius: 25px;
-    margin-left: 20px;
-} */
+
 #all-products {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* border: 1px solid black; */
     text-align: center;
     width: 100%;
     margin: auto;
@@ -59,14 +76,13 @@ form button {
     padding: 5% 3%;
 }
 .single-product {
-    /* padding: 25px; */
     transition: 0.6s;
     margin: 15px;
     border-radius: 10px;
     box-shadow: 0px 0px 7px rgb(236, 236, 236);
 }
-.single-product h1{
-  font-size: 20px;
+.single-product h1 {
+    font-size: 20px;
 }
 .product-body {
     background-color: #f7f7f7;
@@ -75,27 +91,120 @@ form button {
     height: 330px;
 }
 .single-product:hover {
-    box-shadow: 0px 0px 17px gray;
-    /* border: 1px solid cyan; */
+    box-shadow: 0px 0px 17px #e57215;
 }
 .product-image {
     width: 250px;
     height: 250px;
     padding: 25px;
-    
 }
+
+/* main card section style  */
+
 .cart {
     width: 350px;
-    /* border: 1px solid green; */
     padding: 10px;
     box-shadow: 10px 10px 20px gray;
     border-radius: 5px;
     margin-right: 30px;
     position: fixed;
+    top: 20%;
+    background-color: white;
 }
 .cart-main {
     padding-right: 30px;
 }
+
+/* start of newsletter area */
+
+.newsletter-area {
+    background-color: #353535;
+    padding: 3% 0;
+}
+.newsletter {
+    display: flex;
+    align-items: center;
+}
+
+.news-texts {
+    width: 40%;
+}
+
+.news-texts h1 {
+    font-size: 2em;
+    font-weight: 800;
+    color: white;
+}
+
+.news-form {
+    width: 60%;
+    text-align: right;
+}
+
+input {
+    width: 60%;
+    padding: 10px 0 10px 10px;
+    font-size: 1em;
+}
+
+.form-btn {
+    width: 30%;
+    padding: 10px 0;
+    background-color: #e02c6d;
+    border: none;
+    color: white;
+    font-size: 1em;
+}
+
+/* end of newsletter area */
+
+/* start rating style  */
+
+.stars-outer {
+    position: relative;
+    display: inline-block;
+}
+
+.stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+}
+
+.stars-outer::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 900;
+    color: #ccc;
+}
+
+.stars-inner::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 900;
+    color: #f8ce0b;
+}
+
+/* start of footer area */
+
+footer {
+    background-color: #e57215;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    padding: 20px 0;
+}
+
+footer a {
+    text-decoration: none;
+    color: white;
+}
+
+/* end of footer area */
+
 @media only screen and (max-width: 768px) {
     #all-products {
         display: grid;
